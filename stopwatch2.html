@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOPWATCH</title>
+</head>
+<style>
+    .stopwatch {
+        font-size: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+
+    }
+
+    button {
+        font-size: 30px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 200px;
+        cursor: pointer;
+        margin: 0 5px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    div {
+        color: white;
+    }
+</style>
+
+<body style="display:flex; align-items: center;justify-content: center;height: 700px;background:url(./the_legend_of_zelda_breath_of_the_wild_17_4k_hd_games-3840x2160.jpg);background-size: cover;">
+    <div style="display: flex;flex-direction: column;border: 6px lightblue solid;background-image: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pxfuel.com%2Fen%2Fdesktop-wallpaper-itfgs&psig=AOvVaw1SP9CTTSyeBv6XKqsUj17M&ust=1694670992690000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLi4ksvzpoEDFQAAAAAdAAAAABAJ);padding: 30px;border-radius: 250px;">
+        <div class="stopwatch">
+            <div id="hours" style="font-size: 50px;">0h </div>
+            <div id="minutes" style="font-size: 50px;"> 0m</div>
+            <div id="seconds" style="font-size: 50px;"> 0s</div>
+            <div id="milliseconds" style="font-size: 50px;"> 00</div>
+        </div>
+        <div style="margin: 30px;"></div>
+        <div class="buttons">
+            <button id="start" onclick="begin()">START</button>
+            <button id="pause" onclick="stop()">PAUSE</button>
+            <button id="reset" onclick="reset()">RESET</button>
+        </div>
+    </div>
+</body>
+<script>
+    var hour = 0;
+    var min = 0;
+    var sec = 0;
+    var msec = 0;
+    function begin() {
+        document.getElementById("start").setAttribute('disabled', 'disabled');
+        watch = setInterval(() => {
+            msec++;
+            if (msec == 100) {
+                sec++;
+                msec = 0;
+            }
+            if (sec == 60) {
+                min++;
+                sec = 0;
+            }
+            if (min == 60) {
+                hour++;
+                min = 0;
+            }
+            document.getElementById("milliseconds").innerHTML = msec;
+            document.getElementById("seconds").innerHTML = sec + "s";
+            document.getElementById("minutes").innerHTML = min + "m";
+            document.getElementById("hours").innerHTML = hour + "h";
+        }, 10)
+
+
+    }
+    function stop() {
+        clearInterval(watch);
+        document.getElementById("start").removeAttribute('disabled', 'disabled');
+
+    }
+    function reset() {
+        hour = 0;
+        min = 0;
+        sec = 0;
+        msec = 0;
+        document.getElementById("milliseconds").innerHTML = "0h";
+        document.getElementById("seconds").innerHTML = " 0m";
+        document.getElementById("minutes").innerHTML = " 0s";
+        document.getElementById("hours").innerHTML = " 00";
+    }
+</script>
+
+</html>
